@@ -269,7 +269,7 @@
 					<div class="bg">
 						<iframe src="https://www.youtube.com/embed/GSdepTyjrcU" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 					</div>
-					<a href="#" class="btn btn_enter">Записаться</a>
+					<a href="#" class="btn btn_enter" data-modal="form-feedback">Записаться</a>
 				</div>
 			</div>
 		</section>
@@ -339,6 +339,34 @@
 		</div>
 	</div>
 </footer>
+
+	<div class="modal" id="form-feedback">
+		<div class="modal__content">
+			<h2 class="title">Запись на участие</h2>
+			<form class="form">
+				<div class="form__body">
+					<div class="form__cell">
+						<label class="form__field form__field_error"><input type="text" placeholder="Как вас зовут"></label>
+						<label class="form__field"><input type="text" placeholder="Контактный телефон"></label>
+						<label class="form__field"><input type="text" placeholder="Ваш e-mail"></label>
+					</div>
+					<div class="form__cell">
+						<label class="form__field form__field_txt">
+							<textarea placeholder="Ваш вопрос или комментарий"></textarea>
+						</label>
+					</div>
+				</div>
+				<div class="form__agree">
+					<label class="checkbox">
+						<input type="checkbox">
+						<div class="checkbox__custom"></div>
+						<p>Согласен на обработку персональных данных</p>
+					</label>
+				</div>
+				<button class="btn">Отправить</button>
+			</form>
+		</div>
+	</div>
 
 	<script src="js/libs.js"></script>
 	<script src="js/script.js"></script>
