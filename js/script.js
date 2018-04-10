@@ -1,1 +1,108 @@
-$(function(){function t(){n=new ymaps.Map("map",{center:[55.76,37.64],zoom:7}),a=new ymaps.Placemark([55.76,37.64],{hintContent:"Москва!",balloonContent:"Столица России"}),n.geoObjects.add(a)}$(".slider__list").flickity({pageDots:!1,prevNextButtons:!0,wrapAround:!0,contain:!0}),function(){var t=$(".slideshow__item").length,n=Math.round(100/t),a=(100-n)/100,e=Math.round(100/(t*a));$(".slideshow__item").each(function(t,n){var a=e*t;$(n).find("img"),$(n).css({left:a+"%",bottom:a+"%",transform:"translate(-"+a+"%,"+a+"%)"})})}(),$(".slideshow__item").hover(function(){$(this).addClass("active")},function(t){$(".slideshow__item.active").removeClass("active")}),ymaps.ready(t);var n,a;$("[data-img]").on("click",function(){var t=$(this).data("img");$.fancybox.open({src:t,type:"image",opts:{}})}),$("[data-modal]").on("click",function(){var t=$(this).data("modal"),n=$("#"+t).get(0);$.fancybox.open({src:n})}),$(".search__tip strong").on("click",function(){var t=$(this).text();$(".search__field input").val(t)}),$(".menu").on("click",function(){$(this).toggleClass("open"),$(".nav").toggleClass("open")}),$(".nav__item_drop").on("click",function(t){if("A"!==t.target.tagName){$(window).width()<=768&&($(this).hasClass("open")?$(this).removeClass("open"):($(".nav__item_drop.open").removeClass("open"),$(this).addClass("open")))}}),$(".index .wrapper").parallax({src:"img/bg.png",speed:.3})});
+$(function(){
+    $('.slider__list').flickity({
+        pageDots: false,
+        prevNextButtons: true,
+        wrapAround: true,
+        contain: true
+    });
+
+    $('.notify__next').on('click', function() {
+        $('.slider__list').flickity('next');
+    });
+
+    function slideShow() {
+        var slides = $('.slideshow__item').length,
+            mar = Math.round(100/slides),
+            mar2 = (100-mar)/100,
+            margin = Math.round(100/(slides*mar2));
+
+        $('.slideshow__item').each(function(i, slide) {
+            var m = margin*i,
+                img = $(slide).find('img');
+
+            $(slide).css({
+                'left': m+'%',
+                'bottom': m+'%',
+                'transform': 'translate(-'+m+'%,'+m+'%)'
+            })
+        });
+    }
+
+    slideShow();
+
+    $('.slideshow__item').hover(function() {
+        $(this).addClass('active');
+    }, function(e) {
+        $('.slideshow__item.active').removeClass('active');
+    })
+
+    ymaps.ready(init);
+    var myMap, 
+        myPlacemark;
+
+    function init(){ 
+        myMap = new ymaps.Map("map", {
+            center: [55.76, 37.64],
+            zoom: 7
+        }); 
+        
+        myPlacemark = new ymaps.Placemark([55.76, 37.64], {
+            hintContent: 'Москва!',
+            balloonContent: 'Столица России'
+        });
+        
+        myMap.geoObjects.add(myPlacemark);
+    }
+
+    $('[data-img]').on('click', function() {
+        var img = $(this).data('img');
+        $.fancybox.open({
+            src  : img, // Source of the content
+            type : 'image', // Content type: image|inline|ajax|iframe|html (optional)
+            opts : {} // Object containing item options (optional)
+        });
+    });
+
+    $('[data-modal]').on('click', function(e) {
+        e.preventDefault();
+        
+        var id = $(this).data('modal'),
+            modal = $('#'+id).get(0);
+
+        $.fancybox.open({
+            src: modal
+        })
+    });
+
+    $('.search__tip strong').on('click', function() {
+        var val = $(this).text();
+
+        $('.search__field input').val(val);
+    });
+
+    $('.menu').on('click', function() {
+        $(this).toggleClass('open');
+        $('.nav').toggleClass('open');
+    });
+
+    $('.nav__item_drop').on('click', function(e) {
+        if (e.target.tagName === 'A') return;
+        var winWidth = $(window).width();
+
+
+        if (winWidth <= 768) {
+            if ($(this).hasClass('open')) {
+                $(this).removeClass('open')
+            } else {
+                $('.nav__item_drop.open').removeClass('open');
+                $(this).addClass('open');
+            }
+        }
+    });
+
+    $('.index .wrapper').parallax({
+        src: 'img/bg.png',
+        speed: .3
+    })
+
+}); 
