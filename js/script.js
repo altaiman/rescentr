@@ -105,4 +105,21 @@ $(function(){
         speed: .3
     })
 
+    // Табы
+
+    $('.newslist [data-tab]').hide();
+
+    $('.newslist [data-content]').on('click', function(e) {
+        e.preventDefault();
+
+        $('.newslist [data-content]').removeClass('active');
+        $('.newslist [data-tab]').hide();
+        $(this).addClass('active');
+
+        var content = $(this).data('content');
+
+        $('[data-tab="'+content+'"]').show();
+
+    })
+
 }); 
